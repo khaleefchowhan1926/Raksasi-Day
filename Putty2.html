@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raksasi's👻Day</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-image: url("images/putty.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px red, 0 0 30px crimson;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff0000; }
+      to { text-shadow: 0 0 25px #ff4444, 0 0 50px #ff0000; }
+    }
+
+    .countdown {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      font-size: 2rem;
+      z-index: 2;
+    }
+
+    .countdown div {
+      position: relative;
+      width: 160px;
+      height: 180px;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      cursor: default;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
+    }
+
+    .countdown div:hover {
+      transform: scale(1.1);
+    }
+
+    .countdown div img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      filter: brightness(0.7);
+    }
+
+    .countdown div span, .countdown div div {
+      position: relative;
+      z-index: 2;
+    }
+
+    .countdown div div {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .countdown div span {
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1><b>Smile Raksasi👻🎉</b></h1>
+
+  <div class="countdown">
+    <div id="days-box">
+      <img src="images/putty4.jpg" alt="Days Image">
+      <div id="days">00</div>
+      <span>Days</span>
+    </div>
+    <div id="hours-box">
+      <img src="images/putty2.jpg" alt="Hours Image">
+      <div id="hours">00</div>
+      <span>Hours</span>
+    </div>
+    <div id="minutes-box">
+      <img src="images/putty3.jpg" alt="Minutes Image">
+      <div id="minutes">00</div>
+      <span>Minutes</span>
+    </div>
+    <div id="seconds-box">
+      <img src="images/putty5.jpg" alt="Seconds Image">
+      <div id="seconds">00</div>
+      <span>Seconds</span>
+    </div>
+  </div>
+
+  <footer><h2>Made with 😚😘❤️ by Nani...</h2></footer>
+
+  <script>
+    const targetDate = new Date("October 26, 2025 00:00:00").getTime();
+
+    const countdown = () => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days.toString().padStart(2, "0");
+      document.getElementById("hours").innerText = hours.toString().padStart(2, "0");
+      document.getElementById("minutes").innerText = minutes.toString().padStart(2, "0");
+      document.getElementById("seconds").innerText = seconds.toString().padStart(2, "0");
+
+      if (difference < 0) {
+        clearInterval(timer);
+        document.querySelector(".countdown").innerHTML = "<h2>🎊 Countdown Complete! 🎊</h2>";
+      }
+    };
+
+    const timer = setInterval(countdown, 1000);
+    countdown();
+  </script>
+</body>
+</html>
